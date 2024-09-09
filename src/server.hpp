@@ -29,7 +29,7 @@
 inline constexpr std::string_view usageGuide = R"(Commands:
 HELP : Display available commands.
 USER <name> : change the user name to <name>.
-SIZE : query total number of messages in the Bulletin Board.
+SIZE : query the total number of messages on the Bulletin Board.
 READ <msg-number> : query the message with number <msg-number>.
 LIST <first> <last> : List all messages in the range [first, last].
 WRITE <message> : write the message to the Bulletin Board and get its message number.
@@ -39,8 +39,8 @@ QUIT : quit the current session.
 Notes:
 * User name should consist of alphanumeric characters.
 * Messages should consist of printable characters.
-* Any whitespaces in the front or the back of the message string is removed.
-* Messages are assigned numbers in sequence they are written, starting with 0. So if the total number of messages written are N then the last message written will have number N-1.
+* Any whitespaces in the front or the back of the message string are removed.
+* Messages are assigned numbers in the sequence they are written, starting with 0. So if the total number of messages written is N then the last message written will have the number N-1.
 )";
 
 enum class FdState { IO, PROCESS, CLOSE };
@@ -286,7 +286,7 @@ private:
         std::format_to(out,
                        "Greetings,\n"
                        "{}\n"
-                       "Your user name is \"{}\". To change it use the USER command.\n\n",
+                       "Your username is \"{}\". To change it use the USER command.\n\n",
                        usageGuide, defaultUserName);
         return io::writeToSocket(fd, ie.cxt->writeBuffer);
     }
